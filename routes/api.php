@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 /** importar los controllers */
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\RoleController;
+use App\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +39,22 @@ Route::group(
         'middleware' => ['api']
     ],
     function ($router) {
-        /* colocar las rutas de la api*/
+        //Crud Roles
+        Route::resource('/role', RoleController::class);
+
+    }
+);
+
+
+
+//Route::group(
+//    [
+//        'middleware' => ['api']
+//    ],
+//    function ($router) {
+//        /* colocar las rutas de la api*/
         /*Esta forma engloba varias rutas */
-        Route::resource('/department', DepartmentController::class);
+//        Route::resource('/department', DepartmentController::class);
         /* solo con la ruta de arriba se engloba estas 4 principales
         asi se evita estar teniendo tantas rutas, cuando solo es crud se puede
         utilizar el resource
@@ -52,7 +67,7 @@ Route::group(
         Route::post('logout', [AuthController::class, 'logout']);
         */
         
-    }
-);
+//    }
+//);
 
 Route::get('/status', fn () => response()->json(["message" => "Active"]));

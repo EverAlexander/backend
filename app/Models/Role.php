@@ -28,7 +28,7 @@ class Role extends Model
 
     public static function allDataSearched($search, $sortBy, $sort, $skip, $itemsPerPage)
     {
-        return Role::select('role.*', 'role.id as id')
+        return Role::select('role.*', 'role.id as idRol')
 
             ->where('role.name', 'like', $search)
 

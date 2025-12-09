@@ -103,44 +103,7 @@ class AuthController extends Controller
         }
     }
 
-    //Codigo de prueba
-    /*
-    public function login()
-    {
-        try {
-            $credentials = request(['email', 'password']);
-
-            // Intentar autenticar con JWT local
-            if (!$token = auth('api')->attempt($credentials)) {
-                return response()->json([
-                    'message' => 'Credenciales no válidas',
-                    'error' => 'Unauthorized'
-                ], 401);
-            }
-
-            // Obtener el usuario
-            $user = auth('api')->user();
-
-            // Devolver token + info del usuario
-            return response()->json([
-                'message' => 'Token generado correctamente.',
-                'data' => [
-                    'access_token' => $token,
-                    'token_type' => 'Bearer',
-                    'expires_in' => auth('api')->factory()->getTTL() * 60,
-                    'user' => $user->format(),
-                ]
-            ]);
-        } catch (\Throwable $th) {
-            Log::error($th);
-            return response()->json([
-                'message' => 'No fue posible autenticar el usuario.',
-                'error' => $th->getMessage(),
-            ], 400);
-        }
-    }*/
-
-
+    
     /**
      * Get a JWT via given credentials.
      *
