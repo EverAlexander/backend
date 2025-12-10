@@ -73,8 +73,10 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         return [
             "id" => Encrypt::encryptValue($this->id) ?? null,
             "name" => $this?->name,
+            "idUser" => $this?->id,
             "email" => $this?->email,
             "rol" => $this?->role?->name,
+            "idRol" => $this?->role_id
         ];
     }
 
