@@ -65,7 +65,6 @@ class RoleController extends Controller
         return response()->json([
             "message" => "Registro creado correctamente.",
         ]);
-        
     }
 
     /**
@@ -87,7 +86,7 @@ class RoleController extends Controller
     public function edit(string $id)
     {
         //
-        
+
     }
 
     /**
@@ -99,13 +98,13 @@ class RoleController extends Controller
         $data = Encrypt::decryptArray($request->all(), 'id');
 
         $roles = Role::where('id', $data['id'])->first();
-		$roles->name = $request->name;
-		$roles->deleted_at = $request->deleted_at;
+        $roles->name = $request->name;
+        $roles->deleted_at = $request->deleted_at;
 
         $roles->save();
 
         return response()->json([
-            "message"=>"Registro modificado correctamente.",
+            "message" => "Registro modificado correctamente.",
         ]);
     }
 
@@ -115,12 +114,10 @@ class RoleController extends Controller
     public function destroy(Request $request)
     {
         //
-        $id = Encrypt::decryptValue($request->id);
-
-        Role::where('id', $id)->delete();
+        Role::where('id', $request->id)->delete();
 
         return response()->json([
-            "message"=>"Registro eliminado correctamente.",
+            "message" => "Registro eliminado correctamente.",
         ]);
     }
 }
