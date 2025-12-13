@@ -113,11 +113,13 @@ class RoleController extends Controller
      */
     public function destroy(Request $request)
     {
-        //
-        Role::where('id', $request->id)->delete();
+        
+        $id = Encrypt::decryptValue($request->id);
+
+        Role::where('id', $id)->delete();
 
         return response()->json([
-            "message" => "Registro eliminado correctamente.",
+            "message"=>"Registro eliminado correctamente.",
         ]);
     }
 }

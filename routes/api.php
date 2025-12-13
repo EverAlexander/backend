@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 /** importar los controllers */
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
 use App\Models\Role;
@@ -42,9 +43,8 @@ Route::group(
     function ($router) {
         //Crud Roles
         Route::resource('/role', RoleController::class);
-
-        //Crud users
         Route::resource('/users', UsersController::class);
+        Route::resource('/marca', MarcaController::class);
 
     }
 );

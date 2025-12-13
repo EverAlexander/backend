@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('supplier', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('telephone');
-            $table->string('web_site');
+        Schema::create('marca', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('nombre_marca');
+            $table->string('descripcion_marca')->nullable();
+            
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('supplier');
+        Schema::dropIfExists('marca');
     }
 };

@@ -3,23 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends Model
+class Marca extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'role';
+    protected $table = 'marca';
 
     protected $data = ['deleted_at'];
     
-    protected $casts = [
-        'deleted_at' => 'datetime',
-    ];
-
     protected $fillable = [
-        'id', 'name', 'created_at', 'updated_at', 'deleted_at',
+        'id', 'nombre_marca','descripcion_marca', 'created_at', 'updated_at', 'deleted_at',
     ];
 
     public $hidden = [
@@ -32,23 +28,22 @@ class Role extends Model
 
     public static function allDataSearched($search, $sortBy, $sort, $skip, $itemsPerPage)
     {
-        return Role::select('role.*', 'role.id as idRol')
+        return Marca::select('marca.*', 'marca.id as idMarca')
 
-            ->where('role.name', 'like', $search)
+            ->where('marca.nombre_marca', 'like', $search)
 
             ->skip($skip)
             ->take($itemsPerPage)
-            ->orderBy("role.$sortBy", $sort)
+            ->orderBy("marca.$sortBy", $sort)
             ->get();
     }
 
     public static function counterPagination($search)
     {
-        return Role::select('role.*', 'role.id as idRol')
+        return Marca::select('marca.*', 'marca.id as idMarca')
 
-            ->where('role.name', 'like', $search)
+            ->where('marca.nombre_marca', 'like', $search)
 
             ->count();
     }
-
 }
