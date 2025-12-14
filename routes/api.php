@@ -3,8 +3,8 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 /** importar los controllers */
-use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsersController;
 use App\Models\Role;
@@ -41,11 +41,11 @@ Route::group(
         'middleware' => ['api']
     ],
     function ($router) {
-        //Crud Roles
+        //Lista de Crud 
         Route::resource('/role', RoleController::class);
         Route::resource('/users', UsersController::class);
         Route::resource('/marca', MarcaController::class);
-
+        Route::resource('/modelo', ModeloController::class);
     }
 );
 

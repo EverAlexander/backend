@@ -55,6 +55,17 @@ class MarcaController extends Controller
     public function store(Request $request)
     {
         //
+        $marca = new Marca();
+
+        $marca->nombre_marca = $request->nombre_marca;
+        $marca->descripcion_marca = $request->descripcion_marca;
+        $marca->id = $request->id;
+        $marca->deleted_at = $request->deleted_at;
+        $marca->save();
+
+        return response()->json([
+            "message" => "Registro creado correctamente.",
+        ]);
     }
 
     /**
@@ -79,13 +90,30 @@ class MarcaController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $data = Encrypt::decryptArray($request->all(), 'id');
+
+        $marca = Marca::where('id', $data['id'])->first();
+        $marca->nombre_marca = $request->nombre_marca;
+        $marca->descripcion_marca = $request->descripcion_marca;
+        $marca->deleted_at = $request->deleted_at;
+
+        $marca->save();
+
+        return response()->json([
+            "message" => "Registro modificado correctamente.",
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $id = Encrypt::decryptValue($request->id);
+        Marca::where('id', $id)->delete();
+
+        return response()->json([
+            "message"=>"Registro eliminado correctamente.",
+        ]);
     }
 }
