@@ -45,7 +45,8 @@ Route::group(
         Route::resource('/role', RoleController::class);
         Route::resource('/users', UsersController::class);
         Route::resource('/marca', MarcaController::class);
-        Route::resource('/modelo', ModeloController::class);
+        
+        Route::resource('/modelos', ModeloController::class);
     }
 );
 

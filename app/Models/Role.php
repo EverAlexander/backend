@@ -11,9 +11,7 @@ class Role extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'role';
-
     protected $data = ['deleted_at'];
-    
     protected $casts = [
         'deleted_at' => 'datetime',
     ];

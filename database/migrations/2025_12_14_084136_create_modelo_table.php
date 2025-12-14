@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_marca_fk');
             $table->foreign('id_marca_fk')->references('id')->on('marca');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
