@@ -55,6 +55,18 @@ class ModeloController extends Controller
     public function store(Request $request)
     {
         //
+        $modelos = new Modelo();
+
+        $modelos->nombre_modelo = $request->nombre;
+        $modelos->descripcion_modelo = $request->descripcion;
+        $modelos->id_marca_fk = $request->idMarca;
+        $modelos->id = $request->id;
+        $modelos->deleted_at = $request->deleted_at;
+        $modelos->save();
+
+        return response()->json([
+            "message" => "Registro creado correctamente.",
+        ]);
     }
 
     /**
@@ -73,6 +85,7 @@ class ModeloController extends Controller
     public function edit(string $id)
     {
         //
+
     }
 
     /**
@@ -81,13 +94,33 @@ class ModeloController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $data = Encrypt::decryptArray($request->all(), 'id');
+
+        $modelos = Modelo::where('id', $data['id'])->first();
+        $modelos->nombre_modelo = $request->nombre;
+        $modelos->descripcion_modelo = $request->descripcion;
+        $modelos->id_marca_fk = $request->idMarca;
+
+        $modelos->deleted_at = $request->deleted_at;
+
+        $modelos->save();
+
+        return response()->json([
+            "message" => "Registro modificado correctamente.",
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
         //
+        $id = Encrypt::decryptValue($request->id);
+        Modelo::where('id', $id)->delete();
+
+        return response()->json([
+            "message"=>"Registro eliminado correctamente.",
+        ]);
     }
 }

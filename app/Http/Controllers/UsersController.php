@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Leolopez\Encrypt\Facades\Encrypt;
 class UsersController extends Controller
 {
     /**
@@ -103,6 +103,18 @@ class UsersController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $data = Encrypt::decryptArray($request->all(), 'id');
+
+        $modelos = User::where('id', $data['id'])->first();
+        $modelos->role_id = $request->idRol;
+        
+        $modelos->deleted_at = $request->deleted_at;
+
+        $modelos->save();
+
+        return response()->json([
+            "message" => "Registro modificado correctamente.",
+        ]);
     }
 
     /**

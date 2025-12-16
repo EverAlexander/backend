@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TipoequiposController;
 use App\Http\Controllers\UsersController;
 use App\Models\Role;
 
@@ -45,8 +46,8 @@ Route::group(
         Route::resource('/role', RoleController::class);
         Route::resource('/users', UsersController::class);
         Route::resource('/marca', MarcaController::class);
-        
         Route::resource('/modelos', ModeloController::class);
+        Route::resource('/type', TipoequiposController::class);
     }
 );
 
